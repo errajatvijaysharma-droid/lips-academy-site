@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Enroll Now – LiPS Training India</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background:#f5f7fb;
+  color:#111827;
+}
+
+/* ===== TOP BAR ===== */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 16px;
+  background:#ffffff;
+  border-bottom:1px solid #e5e7eb;
+}
+.topbar button{
+  background:none;
+  border:none;
+  font-size:0.9rem;
+  cursor:pointer;
+  font-weight:600;
+}
+.topbar .close{
+  color:#dc2626;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+  max-width:520px;
+  margin:24px auto;
+  background:#ffffff;
+  border-radius:14px;
+  padding:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+h1{
+  font-size:1.3rem;
+  margin-bottom:6px;
+}
+.sub{
+  font-size:0.85rem;
+  color:#6b7280;
+  margin-bottom:16px;
+}
+
+/* ===== FORM ===== */
+label{
+  font-size:0.85rem;
+  font-weight:600;
+  display:block;
+  margin-top:14px;
+}
+input, select{
+  width:100%;
+  padding:10px;
+  margin-top:6px;
+  border-radius:8px;
+  border:1px solid #d1d5db;
+  font-size:0.9rem;
+}
+
+/* ===== BUTTONS ===== */
+.actions{
+  margin-top:18px;
+}
+.actions button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  font-size:1rem;
+  font-weight:600;
+  cursor:pointer;
+}
+.primary{
+  background:#111827;
+  color:#fff;
+}
+.primary:disabled{
+  background:#9ca3af;
+  cursor:not-allowed;
+}
+
+/* ===== PAYMENT ===== */
+.qr{
+  text-align:center;
+  margin-top:16px;
+}
+.qr img{
+  max-width:180px;
+}
+
+/* STEP CONTROL */
+.step{
+  display:none;
+}
+.step.active{
+  display:block;
+}
+/* SMALL CHECKBOX */
+#paymentConfirm{
+  width:16px;
+  height:16px;
+  accent-color:#2563eb; /* optional – blue tick */
+  margin-top:2px;
+}
+</style>
+</head>
+
+<body>
+<!-- READ-ONLY COURSE (HIDDEN BY DEFAULT) -->
+<div id="courseReadonly" style="display:none;">
+  <label>Selected Course</label>
+  <div style="
+    margin-top:6px;
+    padding:10px;
+    border-radius:8px;
+    background:#f3f4f6;
+    border:1px solid #d1d5db;
+    font-size:0.9rem;
+    color:#374151;
+  " id="courseNameBox"></div>
+</div>
+<!-- TOP BAR -->
+<div class="topbar">
+  <button onclick="goBack()">⬅️ Back</button>
+  <button class="close" onclick="closeFlow()">❌ Close</button>
+</div>
+
+<!-- ================= STEP 1 ================= -->
+<div class="container step active" id="step1">
+  <h1>Enroll Now</h1>
+  <p class="sub">LiPS Training India– Lifestyle • Image • Personality • Skills</p>
+
+  <label>Full Name *</label>
+  <input type="text" id="name" required>
+
+  <label>Mobile Number *</label>
+  <input type="tel" id="mobile" required>
+
+  <label>Email *</label>
+  <input type="email" id="email" required>
+
+  <div id="courseSelectWrapper">
+  <label>Select Course *</label>
+  <select id="course"></select>
+</div>
+
+  <div class="actions">
+    <button class="primary" onclick="goToPayment()">Continue</button>
+  </div>
+</div>
+
+<!-- ================= STEP 2 ================= -->
+<div class="container step" id="step2">
+  <h1>Complete Payment</h1>
+  <p class="sub">Scan QR and complete the payment</p>
+
+  <div class="qr">
+    <!-- SAMPLE QR -->
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=lipsTrainingIndia@upi" alt="QR">
+    <p style="font-size:0.8rem;color:#6b7280;">
+      UPI ID: lipsTrainingIndia@upi
+    </p>
+  </div>
+
+  <!-- CHECKBOX -->
+  <label style="display:flex; gap:10px; margin-top:16px; font-size:0.85rem; line-height:1.4;">
+    <input type="checkbox" id="paymentConfirm">
+    <span>
+      I have completed the payment and I will share the transaction receipt on WhatsApp with LiPS Training India.<br>
+      मैंने भुगतान पूरा कर दिया है और मैं लेन-देन की रसीद LiPS Training India को WhatsApp पर साझा करूँगा/करूँगी।
+    </span>
+  </label>
+
+  <div class="actions">
+    <button class="primary" id="continueBtn" disabled>Continue</button>
+  </div>
+</div>
+
+<script>
+/* ===== STEP CONTROL ===== */
+let currentStep = 1;
+
+function showStep(n){
+  document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"));
+  document.getElementById("step"+n).classList.add("active");
+  currentStep = n;
+}
+
+function goBack(){
+  if(currentStep === 2){
+    showStep(1);
+  } else {
+    history.back();
+  }
+}
+
+function closeFlow(){
+  window.location.href = "index.html";
+}
+
+/* ===== STEP 1 → STEP 2 ===== */
+function goToPayment(){
+  const nameEl   = document.getElementById("name");
+  const mobileEl = document.getElementById("mobile");
+  const emailEl  = document.getElementById("email");
+  const courseEl = document.getElementById("course");
+
+  const name   = nameEl.value.trim();
+  const mobile = mobileEl.value.trim();
+  const email  = emailEl.value.trim();
+  const course = courseEl.value;
+
+  const mobileRegex = /^[6-9]\d{9}$/;
+  const emailRegex  = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  if(name.length < 2){
+    alert("Please enter a valid full name");
+    return;
+  }
+
+  if(!mobileRegex.test(mobile)){
+    alert("Please enter a valid 10-digit mobile number");
+    return;
+  }
+
+  if(!emailRegex.test(email)){
+    alert("Please enter a valid email address");
+    return;
+  }
+
+  if(!course){
+    alert("Please select a course");
+    return;
+  }
+
+  localStorage.setItem("enrollData", JSON.stringify({
+    enrollNo: "LIPS-" + Date.now(),
+    name, mobile, email, course
+  }));
+
+  showStep(2);
+}
+
+/* ===== CHECKBOX ENABLE CONTINUE ===== */
+const checkbox = document.getElementById("paymentConfirm");
+const continueBtn = document.getElementById("continueBtn");
+
+checkbox.addEventListener("change", ()=>{
+  continueBtn.disabled = !checkbox.checked;
+});
+
+/* ===== STEP 2 → RECEIPT ===== */
+continueBtn.addEventListener("click", ()=>{
+  window.location.href = "receipt.html";
+});
+
+</script>
+<script>
+/* ================= COURSE DATA ================= */
+const coursesData = [
+  { id:'A1', title:'Lebanese & Turkish Workshop' },
+  { id:'A2', title:'Mexican Workshop' },
+  { id:'A3', title:'Italian Workshop' },
+  { id:'A4', title:'Japanese Korean Thai Cuisine Workshop' },
+  { id:'A5', title:'South Indian Cooking Workshop' },
+  { id:'A6', title:'Beginner Complete Cooking' },
+  { id:'A7', title:'Millet Cook & Bake Workshop' },
+
+  { id:'B1', title:'International Dessert Special Workshop' },
+  { id:'B2', title:'Breads, Buns, Puffs & Savouries Workshop' },
+  { id:'B3', title:'High Tea Baking Workshop' },
+  { id:'B4', title:"Beginner's Cake Workshop" },
+  { id:'B5', title:'Cookies, Brownies & Muffins Workshop' },
+
+  { id:'C1', title:'Kebab & Tikka Special Online Cooking Workshop' },
+  { id:'C2', title:'Italian Online Cooking Workshop' },
+  { id:'C3', title:'Lebanese & Turkish Online Cooking Workshop' },
+  { id:'C4', title:'Online High Tea Baking Workshop' },
+  { id:'C5', title:'Baked Party Starters Online Baking Workshop' },
+  { id:'C6', title:'Fusion Chocolate Desserts Online Baking Workshop' }
+];
+
+/* ================= POPULATE DROPDOWN ================= */
+const select = document.getElementById("course");
+select.innerHTML = `<option value="">Select a course</option>`;
+
+coursesData.forEach(c => {
+  const opt = document.createElement("option");
+  opt.value = c.id;
+  opt.textContent = `${c.id} – ${c.title}`;
+  select.appendChild(opt);
+});
+
+/* ================= URL PARAM ================= */
+const params = new URLSearchParams(window.location.search);
+const preCourse = params.get("id"); // ⬅️ IMPORTANT: id (not course)
+
+/* ================= AUTO SELECT + LOCK ================= */
+if (preCourse) {
+  select.value = preCourse;
+
+  const wrapper = document.getElementById("courseSelectWrapper");
+  const readonly = document.getElementById("courseReadonly");
+  const nameBox = document.getElementById("courseNameBox");
+
+  const selectedText =
+    select.options[select.selectedIndex]?.text || preCourse;
+
+  wrapper.style.display = "none";
+  nameBox.innerText = selectedText;
+  readonly.style.display = "block";
+}
+</script>
+</body>
+</html>

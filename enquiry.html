@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact Us – LiPS Training India</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background:#f5f7fb;
+}
+.container{
+  max-width:420px;
+  margin:30px auto;
+  background:#fff;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+h1{
+  font-size:1.4rem;
+  margin-bottom:18px;
+}
+label{
+  font-size:0.85rem;
+  font-weight:600;
+  display:block;
+  margin-top:14px;
+}
+input, textarea{
+  width:100%;
+  padding:10px;
+  margin-top:6px;
+  border-radius:8px;
+  border:1px solid #d1d5db;
+  font-size:0.9rem;
+}
+textarea{
+  resize:vertical;
+  min-height:90px;
+}
+button{
+  width:100%;
+  margin-top:20px;
+  padding:12px;
+  background:#16a34a;   /* GREEN */
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  font-size:1rem;
+  font-weight:600;
+  cursor:pointer;
+}
+.small{
+  font-size:0.75rem;
+  color:#6b7280;
+  text-align:center;
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Contact Us</h1>
+
+  <label>Full Name *</label>
+  <input id="name" required>
+
+  <label>Mobile Number *</label>
+  <input id="mobile" type="tel" required>
+
+  <label>Email *</label>
+  <input id="email" type="email" required>
+
+  <label>Message</label>
+  <textarea id="message"
+    placeholder="Please write your query here"></textarea>
+
+  <button onclick="submitEnquiry()">Submit</button>
+
+  <p class="small">We respect your privacy. No spam.</p>
+</div>
+
+<script>
+function submitEnquiry(){
+
+  const mobileRegex = /^[6-9]\d{9}$/;
+  const emailRegex  = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  if(name.value.trim().length < 2){
+    alert("Please enter a valid full name");
+    return;
+  }
+
+  if(!mobileRegex.test(mobile.value)){
+    alert("Please enter a valid 10-digit mobile number");
+    return;
+  }
+
+  if(!emailRegex.test(email.value)){
+    alert("Please enter a valid email address");
+    return;
+  }
+
+  const text =
+`New Enquiry – LiPS Training India
+Name: ${name.value}
+Mobile: ${mobile.value}
+Email: ${email.value}
+
+Message:
+${message.value}`;
+
+  window.open(
+    "https://wa.me/917999938810?text=" + encodeURIComponent(text),
+    "_blank"
+  );
+
+  window.location.href =
+    "mailto:info@lipstrainingindia.com?subject=New Enquiry&body=" +
+    encodeURIComponent(text);
+}
+</script>
+
+</body>
+</html>

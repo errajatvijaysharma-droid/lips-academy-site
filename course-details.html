@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Course Details – A1</title>
+
+<style>
+/* ================= BASE ================= */
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background:#f5f7fb;
+  color:#1f2937;
+}
+a{ text-decoration:none; color:inherit; }
+ul{ padding-left:18px; }
+
+/* ================= HERO ================= */
+.course-hero{
+  background:linear-gradient(135deg,#0b0b0b,#1a1a1a);
+  color:#fff;
+}
+.hero-inner{
+  max-width:1200px;
+  margin:auto;
+  padding:36px 16px;
+  display:flex;
+  gap:32px;
+}
+.hero-left{ flex:1; }
+.hero-left h1{
+  margin:0 0 10px;
+  font-size:2rem;
+}
+.hero-meta{
+  color:#d1d5db;
+  font-size:0.9rem;
+  margin-bottom:8px;
+}
+.price-box{
+  margin:14px 0;
+}
+.old-price{
+  text-decoration:line-through;
+  color:#9ca3af;
+}
+.discount{
+  color:#22c55e;
+  font-weight:600;
+  margin-left:6px;
+}
+.final-price{
+  font-size:1.6rem;
+  font-weight:700;
+}
+.cta{
+  margin-top:14px;
+}
+.hero-right{
+  flex:1;
+  height:280px;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 20px 40px rgba(0,0,0,0.6);
+}
+
+.hero-right img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* Mobile */
+@media (max-width:768px){
+  .hero-inner{
+    flex-direction:column;
+  }
+  .hero-right{
+    height:200px;
+    margin-bottom:16px;
+  }
+}
+/* ===== CTA BUTTONS (UNIFIED) ===== */
+.cta{
+  display:flex;
+  gap:10px;
+}
+
+.cta .btn{
+  display:inline-flex;              /* 🔥 key fix */
+  align-items:center;
+  justify-content:center;
+  height:42px;                      /* 🔥 same height */
+  padding:0 16px;                   /* horizontal padding only */
+  border:none;
+  border-radius:8px;
+  font-weight:600;
+  cursor:pointer;
+  text-decoration:none;
+  font-size:0.9rem;
+}
+
+/* ENROLL – ORANGE */
+.btn-primary{
+  background:#f97316;
+  color:#fff;
+}
+.btn-primary:hover{
+  background:#ea580c;
+}
+
+/* ENQUIRY – GREEN */
+.btn-secondary{
+  background:#22c55e;
+  color:#fff;
+}
+.btn-secondary:hover{
+  background:#16a34a;
+}
+
+@media (max-width:768px){
+
+  .hero-inner{
+    flex-direction:column;
+  }
+
+  .hero-right{
+    width:100%;
+    height:200px;
+    margin-bottom:16px;
+    display:block;
+  }
+}
+
+/* ================= CONTAINER ================= */
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:24px 16px;
+}
+
+/* ========l========= SECTIONS ================= */
+section{
+  background:#fff;
+  border-radius:12px;
+  padding:18px;
+  margin-top:20px;
+}
+h2{
+  font-size:1.25rem;
+  margin:0 0 12px;
+}
+
+/* ================= BENEFITS CARD ================= */
+.benefits{
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+.benefit-item{
+  display:flex;
+  gap:8px;
+  margin-bottom:8px;
+  align-items:flex-start;
+}
+
+/* ================= WHATSAPP ================= */
+.whatsapp{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  width:56px;
+  height:56px;
+  background:#25D366;
+  color:#fff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
+  z-index:999;
+}
+/* ===============================
+   STEP 1 : GALLERY (ISOLATED)
+================================ */
+
+/* Section container */
+.gallery-section{
+  background:#fff;
+  border-radius:12px;
+  padding:18px;
+  margin-top:20px;
+}
+
+/* Grid */
+.gallery-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:16px;
+}
+
+/* Gallery card */
+.gallery-item{
+  background:#ffffff;
+  border-radius:10px;
+  padding:16px;
+  text-align:center;
+  box-shadow:0 6px 16px rgba(0,0,0,.06);
+}
+
+.gallery-item strong{
+  display:block;
+  font-size:1.1rem;
+}
+
+.gallery-item span{
+  font-size:.9rem;
+  color:#6b7280;
+}
+
+/* Mobile */
+@media (max-width:768px){
+  .gallery-grid{
+    grid-template-columns:1fr;
+  }
+}
+/* ===============================
+   STEP-2 : ABOUT + FAKE COLUMN
+   (NO GRID, NO SIDEBAR)
+================================ */
+
+/* Desktop only */
+/* ABOUT + BENEFITS : SAME LEVEL */
+@media (min-width: 901px){
+  .content-row{
+    display: grid;
+    grid-template-columns: minmax(0,1fr) 340px;
+    gap: 16px;
+    align-items: stretch;
+  }
+}
+@media (max-width: 900px){
+  .benefits{
+    background: #fafafa;        /* softer than pure white */
+    border-radius: 12px;
+    margin-top: 12px;           /* tight spacing */
+  }
+}
+@media (max-width: 900px){
+  .about-section p,
+  .benefits li{
+    line-height: 1.7;
+  }
+
+  .benefits li{
+    margin-bottom: 6px;
+  }
+}
+/* ===== ESSENTIAL ABOUT SECTION (MINIMAL) ===== */
+
+/* About container */
+.about-section{
+  background:#ffffff;
+  border-radius:12px;
+  padding:18px;
+
+  /* 🔒 text ka single source */
+  font-size:0.9rem;
+  line-height:1.7;
+  color:#374151;
+}
+
+/* Section heading (emoji + text) */
+.section-title{
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+  font-size:1.25rem;
+  font-weight:700;
+  line-height:1.4;
+  margin:22px 0 12px;
+  color:#111827;
+}
+
+/* Emoji / star */
+.section-title .star{
+  font-size:1.1rem;
+  line-height:1.4;
+}
+
+/* Paragraphs */
+.about-section p{
+  font-size:inherit;
+  line-height:inherit;
+  margin:0 0 14px;
+}
+
+/* Lists */
+.about-section ul{
+  padding-left:18px;
+  margin:0 0 14px;
+}
+
+.about-section ul li{
+  font-size:inherit;
+  line-height:inherit;
+}
+
+/* Mobile heading scale */
+@media (max-width:900px){
+  .section-title{
+    font-size:1.15rem;
+  }
+}
+/* ===== EDGE / MOBILE LIST FIX ===== */
+.about-section ul{
+  padding-left: 22px;   /* thoda breathing space */
+}
+
+.about-section ul li{
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+/* Icon alignment fix */
+.about-section ul li::marker{
+  font-size: 0.9rem;
+}
+
+/* Paragraph readability on mobile */
+@media (max-width: 768px){
+  .about-section p{
+    line-height: 1.8;
+  }
+}
+</style>
+<link rel="stylesheet" href="navbar.css">
+<link rel="stylesheet" href="course.css">
+</head>
+
+<body>
+<div id="navbar"></div>
+<script>
+  fetch('navbar.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('navbar').innerHTML = html;
+    });
+
+
+</script>
+<!-- HERO -->
+<section class="course-hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <h1 id="courseTitle"></h1>
+      <div class="hero-meta" id="meta1"></div>
+      <div class="hero-meta" id="meta2"></div>
+
+      <div class="price-box">
+        <span class="old-price" id="oldPrice"></span>
+        <span class="discount" id="discount"></span><br/>
+        <span class="final-price" id="finalPrice"></span>
+        <small id="gstNote"></small>
+        <div class="hero-meta" id="cashback"></div>
+      </div>
+
+      <div class="cta">
+ <a id="enrollBtn" class="btn btn-primary">Enroll Now</a>
+
+  <a href="enquiry.html" class="btn btn-secondary">
+    Enquiry
+  </a>
+</div>
+    </div>
+
+    <div class="hero-right">
+  <img id="heroImg" alt="Course image">
+</div>
+</section>
+
+<!-- GALLERY : FULL WIDTH -->
+<section class="gallery-section">
+  <h2>Gallery</h2>
+  <div class="gallery-grid" id="gallery"></div>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+<!-- ABOUT + BENEFITS ROW -->
+<div class="content-row">
+<!-- ABOUT + ALL DETAILS (SINGLE SECTION) -->
+<section class="about-section">
+
+  <h2 class="section-title">
+    <span class="star">✴️</span>
+    About This Course
+  </h2>
+  <p id="about"></p>
+
+  <h2 class="section-title">
+    <span class="star">✴️</span>
+    How do these online classes work?
+  </h2>
+  <ul id="howWorks"></ul>
+
+  <h2 class="section-title">
+    <span class="star">✴️</span>
+    What You Will Learn
+  </h2>
+  <ul id="dishList"></ul>
+
+  <h2 class="section-title">
+    <span class="star">✴️</span>
+    Requirements
+  </h2>
+  <ul id="requirements"></ul>
+
+  <h2 class="section-title">
+    <span class="star">✴️</span>
+    Who Is This Course For?
+  </h2>
+  <ul id="whoFor"></ul>
+
+  <h2 class="section-title">
+    <span class="star">✴️</span>
+    After Enrolling
+  </h2>
+  <ul id="afterEnroll"></ul>
+
+  <h2 class="section-title">
+    <span class="star">✴️</span>
+    You Will Receive
+  </h2>
+  <ul id="youReceive"></ul>
+
+  <h2 class="section-title">
+    <span class="star">✴️</span>
+    Certification
+  </h2>
+  <p>✔ Certificate of Participation</p>
+
+</section>
+  <!-- BENEFITS (RIGHT COLUMN) -->
+  <section class="benefits-section">
+  <h2 class="section-title">
+    <span class="star">🎁</span>
+    Benefits
+  </h2>
+
+  <div id="benefits"></div>
+</section>
+
+</div>
+
+<!-- WHATSAPP -->
+<a class="whatsapp" href="https://wa.me/917999938810" target="_blank">💬</a>
+
+<script>
+/* =================================================
+   STEP 1 : HELPERS (SAFE)
+================================================= */
+function fillParagraphs(id, items){
+  const el = document.getElementById(id);
+  if(!el || !items) return;
+  el.innerHTML = items.map(p => `<p>${p}</p>`).join("");
+}
+
+function fillList(id, items){
+  const el = document.getElementById(id);
+  if(!el || !items) return;
+  el.innerHTML = "";
+  items.forEach(i=>{
+    el.innerHTML += `<li>${i}</li>`;
+  });
+}
+
+/* =================================================
+   STEP 2 : RENDER COURSE (🔥 MOST IMPORTANT)
+================================================= */
+function renderCourse(){
+  if (typeof course === "undefined") {
+    console.error("❌ course object not loaded");
+    return;
+  }
+
+  /* HERO */
+  document.getElementById("courseTitle").innerText = course.title;
+  document.getElementById("meta1").innerText = course.heroMeta1;
+  document.getElementById("meta2").innerText = course.heroMeta2;
+
+  document.getElementById("oldPrice").innerText = course.oldPrice;
+  document.getElementById("discount").innerText = course.discount;
+  document.getElementById("finalPrice").innerText = course.finalPrice;
+  document.getElementById("gstNote").innerText = course.gstNote;
+  document.getElementById("cashback").innerText = course.cashback;
+
+  document.getElementById("heroImg").src = course.image;
+
+  /* TEXT SECTIONS */
+  fillParagraphs("about", course.about);
+  fillList("howWorks", course.howWorks);
+  fillList("dishList", course.dishList);
+  fillList("requirements", course.requirements);
+  fillList("whoFor", course.whoFor);
+  fillList("afterEnroll", course.afterEnroll);
+  fillList("youReceive", course.youReceive);
+
+  /* GALLERY */
+  const g = document.getElementById("gallery");
+  g.innerHTML = "";
+  course.gallery.forEach(item=>{
+    g.innerHTML += `
+      <div class="gallery-item">
+        <img src="${item.img}"
+             style="width:100%;height:160px;object-fit:cover;border-radius:8px;margin-bottom:8px;"
+             onerror="this.src='images/placeholder.jpg'">
+        <span>${item.label}</span>
+      </div>`;
+  });
+
+  /* BENEFITS */
+  const b = document.getElementById("benefits");
+  b.innerHTML = "";
+  course.benefits.forEach(i=>{
+    b.innerHTML += `
+      <div class="benefit-item">
+        <span class="icon">${i.icon}</span>
+        <span class="text">${i.text}</span>
+      </div>`;
+  });
+
+  /* ENROLL BUTTON */
+  const enrollBtn = document.getElementById("enrollBtn");
+  const params = new URLSearchParams(window.location.search);
+  const courseId = params.get("id") || "A1";
+  if(enrollBtn){
+    enrollBtn.href = `enroll.html?course=${courseId}`;
+  }
+}
+
+/* =================================================
+   STEP 3 : DYNAMIC COURSE LOADER
+================================================= */
+const params = new URLSearchParams(window.location.search);
+const courseId = params.get("id") || "A1";
+
+const script = document.createElement("script");
+script.src = `courses/${courseId}.js`;
+
+script.onload = () => {
+  renderCourse();   // 🔥 load ke baad hi render
+};
+
+script.onerror = () => {
+  alert("Course file not found : " + courseId);
+};
+
+document.body.appendChild(script);
+</script>
+
+<script defer src="navbar.js"></script>
+</body>
+</html>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,14 +60,50 @@ button{
   text-align:center;
   margin-top:10px;
 }
+/* ===== PLAIN X CLOSE (NO CIRCLE) ===== */
+.container{
+  position:relative;
+}
+
+.popup-close{
+  position:absolute;
+  top:8px;
+  right:8px;
+  width:auto;
+  margin:0;
+  background:none;
+  border:none;
+  padding:0;
+  font-size:22px;
+  font-weight:600;
+  line-height:1;
+  cursor:pointer;
+  color:#111827;
+  z-index:10;
+}
+
+.popup-close:hover{
+  color:#dc2626;
+}
+
+.popup-close:hover{
+  color:#dc2626;
+}
+.popup-close{
+  width:auto !important;
+  margin:0 !important;
+}
 </style>
 </head>
 
 <body>
 
 <div class="container">
-  <h1>Contact Us</h1>
 
+  <!-- POPUP CLOSE BUTTON -->
+  <button class="popup-close" onclick="closeFlow()" aria-label="Close">×</button>
+
+  <h1>Contact Us</h1>
   <label>Full Name *</label>
   <input id="name" required>
 
@@ -123,6 +160,9 @@ ${message.value}`;
   window.location.href =
     "mailto:info@lipstrainingindia.com?subject=New Enquiry&body=" +
     encodeURIComponent(text);
+}
+function closeFlow(){
+  window.location.href = "index.html";
 }
 </script>
 

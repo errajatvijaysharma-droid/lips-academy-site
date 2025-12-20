@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career | LiPS Academy</title>
+
+<style>
+/* ================= BASE ================= */
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background:#f5f7fb;
+  color:#1f2937;
+}
+a{ text-decoration:none; color:inherit; }
+
+/* ================= NAVBAR ================= */
+.navbar{
+  background:#fff;
+  border-bottom:1px solid #e5e7eb;
+  position:sticky;
+  top:0;
+  z-index:40;
+}
+.nav-inner{
+  max-width:1100px;
+  margin:auto;
+  padding:14px 16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.nav-links a{
+  margin-left:18px;
+  font-weight:500;
+  font-size:.9rem;
+  color:#374151;
+}
+.nav-links a:hover{
+  color:#111827;
+}
+
+/* ================= PAGE ================= */
+.career-wrap{
+  max-width:900px;
+  margin:32px auto;
+  padding:0 16px;
+}
+
+.page-title{
+  font-size:1.8rem;
+  margin-bottom:6px;
+}
+.page-sub{
+  color:#6b7280;
+  margin-bottom:24px;
+}
+
+/* ================= JOB CARD ================= */
+.job-card{
+  background:#ffffff;
+  border-radius:14px;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+  margin-bottom:18px;
+  overflow:hidden;
+}
+
+.job-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 20px;
+  cursor:pointer;
+}
+
+.job-head h3{
+  margin:0;
+  font-size:1.1rem;
+}
+
+.meta{
+  font-size:.85rem;
+  color:#6b7280;
+  margin-top:4px;
+}
+
+.toggle-btn{
+  width:36px;
+  height:36px;
+  border:none;
+  border-radius:8px;
+  background:#f97316;     /* ORANGE */
+  color:#fff;
+  font-size:22px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.job-body{
+  display:none;
+  padding:0 20px 20px;
+  color:#374151;
+  line-height:1.6;
+}
+
+.job-body ul{
+  padding-left:18px;
+}
+
+.apply-btn{
+  display:inline-block;
+  margin-top:14px;
+  padding:10px 16px;
+  background:#f97316;
+  color:#fff;
+  border-radius:8px;
+  font-weight:600;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  text-align:center;
+  padding:24px;
+  color:#6b7280;
+  font-size:.85rem;
+}
+/* ================= APPLY POPUP ================= */
+.apply-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:100;
+}
+
+.apply-overlay.hidden{
+  display:none;
+}
+
+.apply-box{
+  background:#ffffff;
+  width:100%;
+  max-width:420px;
+  border-radius:14px;
+  padding:24px;
+  position:relative;
+  box-shadow:0 20px 40px rgba(0,0,0,.25);
+}
+
+.apply-box h2{
+  margin-top:0;
+  font-size:1.4rem;
+}
+
+.apply-box input{
+  width:100%;
+  padding:10px 12px;
+  margin-top:12px;
+  border:1px solid #e5e7eb;
+  border-radius:8px;
+  font-size:.95rem;
+}
+
+.file-label{
+  display:block;
+  margin-top:12px;
+  font-size:.85rem;
+  color:#374151;
+}
+
+.file-label input{
+  margin-top:6px;
+}
+
+.apply-actions{
+  margin-top:18px;
+  text-align:right;
+}
+
+.submit-btn{
+  background:#f97316;
+  color:#ffffff;
+  border:none;
+  padding:10px 18px;
+  border-radius:8px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.close-apply{
+  position:absolute;
+  top:12px;
+  right:14px;
+  border:none;
+  background:none;
+  font-size:22px;
+  cursor:pointer;
+}
+.job-title-row{
+  background:#f3f4f6;      /* light grey */
+  border-radius:8px;
+  padding:10px 12px;
+  font-size:.9rem;
+  color:#374151;
+  margin-bottom:12px;
+}
+
+.job-title-row span{
+  font-weight:600;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<header class="navbar">
+  <div class="nav-inner">
+    <strong>LiPS Academy</strong>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#courses">Courses</a>
+      <a href="index.html#about">About</a>
+      <a href="career.html">Career</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= CONTENT ================= -->
+<main class="career-wrap">
+  <h1 class="page-title">Careers at LiPS Academy</h1>
+  <p class="page-sub">Join our growing team and inspire people through food & skills.</p>
+
+  <!-- JOB 1 -->
+  <div class="job-card">
+    <div class="job-head">
+      <div>
+        <h3>Cooking Instructor</h3>
+        <p class="meta">Delhi | Part-time | Experience: 1–3 years</p>
+      </div>
+      <button class="toggle-btn">+</button>
+    </div>
+
+    <div class="job-body">
+      <p>
+        Conduct hands-on cooking workshops and guide students with practical
+        techniques and confidence.
+      </p>
+      <ul>
+        <li>Strong cooking fundamentals</li>
+        <li>Good communication skills</li>
+        <li>Weekend availability</li>
+      </ul>
+
+      <a href="#" class="apply-btn open-apply">Apply Now</a> 
+   </div>
+  </div>
+
+  <!-- JOB 2 -->
+  <div class="job-card">
+    <div class="job-head">
+      <div>
+        <h3>Baking Trainer</h3>
+        <p class="meta">Indore | Full-time | Experience: 2–5 years</p>
+      </div>
+      <button class="toggle-btn">+</button>
+    </div>
+
+    <div class="job-body">
+      <p>
+        Lead baking workshops, develop recipes, and mentor aspiring bakers.
+      </p>
+      <ul>
+        <li>Professional baking experience</li>
+        <li>Comfortable with live demos</li>
+        <li>Creative recipe planning</li>
+      </ul>
+
+    <a href="#" class="apply-btn open-apply">Apply Now</a>
+    </div>
+  </div>
+
+  <!-- JOB 3 -->
+  <div class="job-card">
+    <div class="job-head">
+      <div>
+        <h3>Workshop Coordinator</h3>
+        <p class="meta">On-site | Flexible | Experience: Fresher OK</p>
+      </div>
+      <button class="toggle-btn">+</button>
+    </div>
+
+    <div class="job-body">
+      <p>
+        Manage workshop operations, coordination, and student support.
+      </p>
+      <ul>
+        <li>Good organisational skills</li>
+        <li>People-friendly attitude</li>
+        <li>Basic computer knowledge</li>
+      </ul>
+
+      <a href="#" class="apply-btn open-apply">Apply Now</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  © <span id="year"></span> LiPS Academy
+</footer>
+
+<!-- ================= APPLY POPUP ================= -->
+<div id="applyModal" class="apply-overlay hidden">
+  <div class="apply-box">
+    <button class="close-apply">×</button>
+
+    <h2>Apply for this Position</h2>
+<!-- JOB TITLE (AUTO, READ ONLY) -->
+<div class="job-title-row">
+  Applying for:
+  <span id="jobTitleText"></span>
+</div>
+    <form id="applyForm">
+      <input type="text" id="a_name" placeholder="Full Name" required>
+
+      <input type="tel" id="a_mobile" placeholder="Mobile Number" required>
+
+      <input type="email" id="a_email" placeholder="Email Address" required>
+
+      <label class="file-label">
+        Upload Resume (PDF only)
+        <input type="file" id="a_resume" accept="application/pdf" required>
+      </label>
+
+      <div class="apply-actions">
+        <button type="submit" class="submit-btn">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- ================= JS ================= -->
+<script>
+document.getElementById("year").innerText = new Date().getFullYear();
+
+document.querySelectorAll('.job-head').forEach(head => {
+  head.addEventListener('click', () => {
+    const card = head.parentElement;
+    const body = card.querySelector('.job-body');
+    const btn  = head.querySelector('.toggle-btn');
+
+    const isOpen = body.style.display === 'block';
+
+    // close all
+    document.querySelectorAll('.job-body').forEach(b => b.style.display = 'none');
+    document.querySelectorAll('.toggle-btn').forEach(b => b.textContent = '+');
+
+    // open current
+    if(!isOpen){
+      body.style.display = 'block';
+      btn.textContent = '−';
+    }
+  });
+});
+/* OPEN / CLOSE POPUP */
+document.querySelectorAll('.open-apply').forEach(btn=>{
+  btn.addEventListener('click', e=>{
+    e.preventDefault();
+
+    // 🔥 AUTO detect job title from card
+    const jobCard = btn.closest('.job-card');
+    const jobTitle = jobCard.querySelector('h3').innerText;
+
+    // set job title in popup (read-only)
+    document.getElementById('jobTitleText').innerText = jobTitle;
+
+    // open popup
+    document.getElementById('applyModal').classList.remove('hidden');
+  });
+});
+
+const closeBtn = document.querySelector('.close-apply');
+if(closeBtn){
+  closeBtn.addEventListener('click', ()=>{
+    document.getElementById('applyModal').classList.add('hidden');
+  });
+}
+
+/* FORM SUBMIT */
+document.getElementById('applyForm').addEventListener('submit', function(e){
+  e.preventDefault();
+
+  const name   = document.getElementById('a_name').value;
+  const mobile = document.getElementById('a_mobile').value;
+  const email  = document.getElementById('a_email').value;
+  const resume = document.getElementById('a_resume').files[0];
+
+  if(resume && resume.type !== 'application/pdf'){
+    alert('Please upload PDF resume only');
+    return;
+  }
+
+  /* ===== WHATSAPP ===== */
+  const PHONE = '91XXXXXXXXXX'; // 👈 apna number
+  const text = `Career Application%0A
+Name: ${name}%0A
+Mobile: ${mobile}%0A
+Email: ${email}%0A
+Resume: (Attached separately)`;
+
+  window.open(`https://wa.me/${PHONE}?text=${text}`, '_blank');
+
+  /* ===== EMAIL ===== */
+  const subject = encodeURIComponent('Career Application - LiPS Academy');
+  const body = encodeURIComponent(
+    `Name: ${name}\nMobile: ${mobile}\nEmail: ${email}\n\nResume attached separately.`
+  );
+
+  window.location.href = `mailto:yourmail@domain.com?subject=${subject}&body=${body}`;
+
+  document.getElementById('applyModal').classList.add('hidden');
+});
+
+</script>
+
+</body>
+</html>
